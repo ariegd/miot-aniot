@@ -1,0 +1,2 @@
+# miot-aniot
+ARQUITECTURA INTERNA DEL NODO IoT
