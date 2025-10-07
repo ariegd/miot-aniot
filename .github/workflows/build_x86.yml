@@ -1,0 +1,48 @@
+# .github/workflows/build_x86.yml
+
+name: Build x86 Project
+
+# 1. Trigger: Se ejecuta en cada 'push' a la rama 'main' o manualmente
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# 2. Jobs: El job de compilación
+jobs:
+  build:
+    # Compilará el ejecutable en un runner de Ubuntu (x86-64)
+    runs-on: ubuntu-latest
+
+    # Pasos del job
+    steps:
+    - name: Checkout Repository
+      # Descarga el código del repositorio
+      uses: actions/checkout@v4
+
+    - name: Configure CMake
+      # Crea el directorio de compilación y configura CMake
+      run: |
+        mkdir build_example_x86
+        cd build_example_x86
+        cmake ../src_example_x86/
+
+    - name: Build Project
+      # Compila el proyecto usando el sistema de compilación generado por CMake
+      run: |
+        cd build_example_x86
+        cmake --build . --config Release
+
+    - name: Test Executable (Optional)
+      # Verifica que el programa se ejecute correctamente en el runner
+      run: |
+        echo "Ejecutando el binario compilado..."
+        ./build_example_x86/hello_world_x86
+
+    - name: Upload Executable Artifact
+      # Sube el binario compilado como un artefacto
+      uses: actions/upload-artifact@v4
+      with:
+        name: x86-64-executable
+        # La ruta al ejecutable compilado por CMake
+        path: build_example_x86/hello_world_x86
