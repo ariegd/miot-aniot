@@ -5,7 +5,9 @@ name: Build x86 Project
 # 1. Trigger: Se ejecuta en cada 'push' a la rama 'main' o manualmente
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
+      - LAB1
   workflow_dispatch:
 
 # 2. Jobs: El job de compilación
