@@ -304,6 +304,21 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/mock-flash/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/esp_event/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/mock-wifi/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/main/cmake_install.cmake")
 endif()
 

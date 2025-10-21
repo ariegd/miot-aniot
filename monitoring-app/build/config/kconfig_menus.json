@@ -5854,6 +5854,44 @@
     {
         "children": [
             {
+                "children": [],
+                "depends_on": null,
+                "help": "Delay seconds between wifi_connect() call and sending event back",
+                "id": "CONNECT_DELAY",
+                "name": "CONNECT_DELAY",
+                "range": null,
+                "title": "CONNECT DELAY (s)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Delay seconds between WIFI_MOCK_EVENT_WIFI_CONNECTED and WIFI_MOCK_EVENT_WIFI_GOT_IP events",
+                "id": "IP_DELAY",
+                "name": "IP_DELAY",
+                "range": null,
+                "title": "IP DELAY (s)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Delay seconds between WIFI_MOCK_EVENT_WIFI_CONNECTED and WIFI_MOCK_EVENT_WIFI_DISCONNECTED events",
+                "id": "DISCONNECT_DELAY",
+                "name": "DISCONNECT_DELAY",
+                "range": null,
+                "title": "DISCONNECT_DELAY (s)",
+                "type": "int"
+            }
+        ],
+        "depends_on": null,
+        "id": "mock_wifi-configuration",
+        "title": "MOCK_WIFI Configuration",
+        "type": "menu"
+    },
+    {
+        "children": [
+            {
                 "children": [
                     {
                         "children": [],
@@ -7675,6 +7713,45 @@
                 "depends_on": "SOC_USB_SERIAL_JTAG_SUPPORTED",
                 "id": "component-config-esp-driver-usb-serial-jtag-configuration",
                 "title": "ESP-Driver:USB Serial/JTAG Configuration",
+                "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "Enables collections of statistics in the event loop library such as the number of events posted\nto/recieved by an event loop, number of callbacks involved, number of events dropped to to a full event\nloop queue, run time of event handlers, and number of times/run time of each event handler.",
+                        "id": "ESP_EVENT_LOOP_PROFILING",
+                        "name": "ESP_EVENT_LOOP_PROFILING",
+                        "range": null,
+                        "title": "Enable event loop profiling",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "ESP_EVENT_POST_FROM_ISR",
+                                "help": "Enable posting events from interrupt handlers placed in IRAM. Enabling this option places API functions\nesp_event_post and esp_event_post_to in IRAM.",
+                                "id": "ESP_EVENT_POST_FROM_IRAM_ISR",
+                                "name": "ESP_EVENT_POST_FROM_IRAM_ISR",
+                                "range": null,
+                                "title": "Support posting events from ISRs placed in IRAM",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "help": "Enable posting events from interrupt handlers.",
+                        "id": "ESP_EVENT_POST_FROM_ISR",
+                        "name": "ESP_EVENT_POST_FROM_ISR",
+                        "range": null,
+                        "title": "Support posting events from ISRs",
+                        "type": "bool"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-event-loop-library",
+                "title": "Event Loop Library",
                 "type": "menu"
             },
             {

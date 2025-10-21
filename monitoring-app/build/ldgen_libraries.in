@@ -86,5 +86,11 @@ $<TARGET_FILE:__idf_esp_driver_usb_serial_jtag>
 $<TARGET_FILE:__idf_esp_driver_twai>
 $<TARGET_FILE:idf::shtc3>
 $<TARGET_FILE:__idf_driver>
+$<TARGET_FILE:idf::mock-flash>
+$<TARGET_FILE:idf::esp_event>
+$<TARGET_FILE:idf::mock-wifi>
+$<TARGET_FILE:__idf_esp_event>
 $<TARGET_FILE:idf::main>
 $<TARGET_FILE:__idf_shtc3>
+$<TARGET_FILE:__idf_mock-flash>
+$<TARGET_FILE:__idf_mock-wifi>

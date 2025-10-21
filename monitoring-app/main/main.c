@@ -13,6 +13,8 @@
 #include "esp_flash.h"
 #include "esp_system.h"
 #include "shtc3.h"
+#include "mock-flash.h"
+#include "mock_wifi.h"
 
 void app_main(void)
 {

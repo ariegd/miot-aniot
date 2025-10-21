@@ -3,3 +3,4 @@ source "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_app_format/Kconfig.proj
 source "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/Kconfig.projbuild"
 source "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esptool_py/Kconfig.projbuild"
 source "C:/Users/Admin/esp/v5.5.1/esp-idf/components/partition_table/Kconfig.projbuild"
+source "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-wifi/Kconfig.projbuild"
