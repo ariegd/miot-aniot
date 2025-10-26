@@ -184,6 +184,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/nvs_flash/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/esp_ringbuf/cmake_install.cmake")
 endif()
 
@@ -315,6 +320,31 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/mock-wifi/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/button_monitor/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/esp_vfs_console/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/vfs/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/console/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/console_shell/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

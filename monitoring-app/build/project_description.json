@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "monitoring-app",
-    "project_version":    "7b97ed6-dirty",
+    "project_version":    "a5178e7-dirty",
     "project_path":       "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app",
     "idf_path":           "C:/Users/Admin/esp/v5.5.1/esp-idf",
     "build_dir":          "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build",
@@ -21,12 +21,12 @@
     "monitor_toolprefix": "riscv32-esp-elf-",
     "c_compiler":         "C:/Users/Admin/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe",
     "config_environment" : {
-        "COMPONENT_KCONFIGS" : "C:/Users/Admin/esp/v5.5.1/esp-idf/components/driver/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/efuse/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_common/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_bitscrambler/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_dac/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gpio/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gptimer/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2c/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2s/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ledc/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_parlio/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_pcnt/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_rmt/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdm/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_spi/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_tsens/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_twai/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_event/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_hw_support/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_mm/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_partition/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_pm/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_ringbuf/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_security/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_system/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/freertos/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/hal/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/heap/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/log/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/mbedtls/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/pthread/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/soc/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/Kconfig;D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/shtc3/Kconfig",
-        "COMPONENT_KCONFIGS_PROJBUILD" : "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader/Kconfig.projbuild;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_app_format/Kconfig.projbuild;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/Kconfig.projbuild;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esptool_py/Kconfig.projbuild;C:/Users/Admin/esp/v5.5.1/esp-idf/components/partition_table/Kconfig.projbuild;D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-wifi/Kconfig.projbuild"
+        "COMPONENT_KCONFIGS" : "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/driver/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/efuse/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_common/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_bitscrambler/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_dac/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gpio/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gptimer/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2c/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2s/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ledc/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_parlio/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_pcnt/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_rmt/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdm/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_spi/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_tsens/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_twai/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_event/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_hw_support/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_mm/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_partition/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_pm/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_ringbuf/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_security/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_system/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/freertos/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/hal/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/heap/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/log/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/mbedtls/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/pthread/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/soc/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/Kconfig;C:/Users/Admin/esp/v5.5.1/esp-idf/components/vfs/Kconfig;D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/shtc3/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader/Kconfig.projbuild;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_app_format/Kconfig.projbuild;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/Kconfig.projbuild;C:/Users/Admin/esp/v5.5.1/esp-idf/components/esptool_py/Kconfig.projbuild;C:/Users/Admin/esp/v5.5.1/esp-idf/components/partition_table/Kconfig.projbuild;D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/main/Kconfig.projbuild;D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-wifi/Kconfig.projbuild"
     },
     "common_component_reqs": [ "cxx", "newlib", "freertos", "esp_hw_support", "heap", "log", "soc", "hal", "esp_rom", "esp_common", "esp_system", "riscv" ],
-    "build_components" : [ "app_update", "bootloader", "bootloader_support", "cxx", "driver", "efuse", "esp_app_format", "esp_bootloader_format", "esp_common", "esp_driver_ana_cmpr", "esp_driver_bitscrambler", "esp_driver_dac", "esp_driver_gpio", "esp_driver_gptimer", "esp_driver_i2c", "esp_driver_i2s", "esp_driver_ledc", "esp_driver_mcpwm", "esp_driver_parlio", "esp_driver_pcnt", "esp_driver_rmt", "esp_driver_sdio", "esp_driver_sdm", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_tsens", "esp_driver_twai", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_event", "esp_hw_support", "esp_mm", "esp_partition", "esp_pm", "esp_ringbuf", "esp_rom", "esp_security", "esp_system", "esp_timer", "esptool_py", "freertos", "hal", "heap", "log", "main", "mbedtls", "mock-flash", "mock-wifi", "newlib", "partition_table", "pthread", "riscv", "sdmmc", "shtc3", "soc", "spi_flash", "" ],
-    "build_component_paths" : [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/app_update", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/cxx", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/driver", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/efuse", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_app_format", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_bootloader_format", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_common", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_bitscrambler", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_dac", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gpio", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gptimer", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2s", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ledc", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_parlio", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_pcnt", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_rmt", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdio", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdm", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdmmc", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdspi", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_spi", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_tsens", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_twai", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_event", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_hw_support", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_mm", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_partition", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_pm", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_ringbuf", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_security", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_system", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esptool_py", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/freertos", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/hal", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/heap", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/log", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/main", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/mbedtls", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-flash", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-wifi", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/partition_table", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/pthread", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/riscv", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/sdmmc", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/shtc3", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/soc", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash", "" ],
+    "build_components" : [ "app_update", "bootloader", "bootloader_support", "button_monitor", "console", "console_shell", "cxx", "driver", "efuse", "esp_app_format", "esp_bootloader_format", "esp_common", "esp_driver_ana_cmpr", "esp_driver_bitscrambler", "esp_driver_dac", "esp_driver_gpio", "esp_driver_gptimer", "esp_driver_i2c", "esp_driver_i2s", "esp_driver_ledc", "esp_driver_mcpwm", "esp_driver_parlio", "esp_driver_pcnt", "esp_driver_rmt", "esp_driver_sdio", "esp_driver_sdm", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_tsens", "esp_driver_twai", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_event", "esp_hw_support", "esp_mm", "esp_partition", "esp_pm", "esp_ringbuf", "esp_rom", "esp_security", "esp_system", "esp_timer", "esp_vfs_console", "esptool_py", "freertos", "hal", "heap", "log", "main", "mbedtls", "mock-flash", "mock-wifi", "newlib", "nvs_flash", "partition_table", "pthread", "riscv", "sdmmc", "shtc3", "soc", "spi_flash", "vfs", "" ],
+    "build_component_paths" : [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/app_update", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/button_monitor", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/console_shell", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/cxx", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/driver", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/efuse", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_app_format", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_bootloader_format", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_common", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_bitscrambler", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_dac", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gpio", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gptimer", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2s", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ledc", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_parlio", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_pcnt", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_rmt", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdio", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdm", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdmmc", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdspi", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_spi", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_tsens", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_twai", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_event", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_hw_support", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_mm", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_partition", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_pm", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_ringbuf", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_security", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_system", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_vfs_console", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esptool_py", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/freertos", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/hal", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/heap", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/log", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/main", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/mbedtls", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-flash", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-wifi", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/partition_table", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/pthread", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/riscv", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/sdmmc", "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/shtc3", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/soc", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/vfs", "" ],
     "build_component_info" : {
         "app_update": {
             "alias": "idf::app_update",
@@ -72,6 +72,51 @@
             "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/bootloader_support/libbootloader_support.a",
             "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_common.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_common_loader.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_clock_init.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_mem.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_random.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_efuse.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/flash_encrypt.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/secure_boot.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_random_esp32c3.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/bootloader_flash/src/bootloader_flash.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/bootloader_flash/src/flash_qio_mode.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c3.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_utility.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/flash_partitions.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/esp_image_format.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/bootloader_sha.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support/src/esp32c3/secure_boot_secure_features.c" ],
             "include_dirs": [ "include", "bootloader_flash/include" ]
+        },
+        "button_monitor": {
+            "alias": "idf::button_monitor",
+            "target": "___idf_button_monitor",
+            "prefix": "idf",
+            "dir": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/button_monitor",
+            "type": "LIBRARY",
+            "lib": "__idf_button_monitor",
+            "reqs": [ "esp_event", "driver", "esp_timer" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/button_monitor/libbutton_monitor.a",
+            "sources": [ "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/button_monitor/button_monitor.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "console": {
+            "alias": "idf::console",
+            "target": "___idf_console",
+            "prefix": "idf",
+            "dir": "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console",
+            "type": "LIBRARY",
+            "lib": "__idf_console",
+            "reqs": [ "vfs", "esp_vfs_console" ],
+            "priv_reqs": [ "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/console/libconsole.a",
+            "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/commands.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/esp_console_common.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/esp_console_repl_internal.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/split_argv.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/linenoise/linenoise.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/esp_console_repl_chip.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_cmd.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_date.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_dbl.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_dstr.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_end.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_file.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_hashtable.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_int.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_lit.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_rem.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_rex.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_str.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/arg_utils.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console/argtable3/argtable3.c" ],
+            "include_dirs": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console" ]
+        },
+        "console_shell": {
+            "alias": "idf::console_shell",
+            "target": "___idf_console_shell",
+            "prefix": "idf",
+            "dir": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/console_shell",
+            "type": "LIBRARY",
+            "lib": "__idf_console_shell",
+            "reqs": [ "esp_event", "console", "mock-flash" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/console_shell/libconsole_shell.a",
+            "sources": [ "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/console_shell/console_shell.c" ],
+            "include_dirs": [ "include" ]
         },
         "cxx": {
             "alias": "idf::cxx",
@@ -460,7 +505,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/esp_driver_uart/libesp_driver_uart.a",
-            "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/src/uart.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/src/uart_wakeup.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/src/uhci.c" ],
+            "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/src/uart.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/src/uart_wakeup.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/src/uhci.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart/src/uart_vfs.c" ],
             "include_dirs": [ "include" ]
         },
         "esp_driver_usb_serial_jtag": {
@@ -475,7 +520,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a",
-            "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c" ],
+            "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_vfs.c" ],
             "include_dirs": [ "include" ]
         },
         "esp_event": {
@@ -628,6 +673,21 @@
             "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer/src/esp_timer.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer/src/esp_timer_init.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer/src/ets_timer_legacy.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer/src/system_time.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer/src/esp_timer_impl_common.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer/src/esp_timer_impl_systimer.c" ],
             "include_dirs": [ "include" ]
         },
+        "esp_vfs_console": {
+            "alias": "idf::esp_vfs_console",
+            "target": "___idf_esp_vfs_console",
+            "prefix": "idf",
+            "dir": "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_vfs_console",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_vfs_console",
+            "reqs": [],
+            "priv_reqs": [ "vfs", "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/esp_vfs_console/libesp_vfs_console.a",
+            "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_vfs_console/vfs_console.c" ],
+            "include_dirs": [ "include" ]
+        },
         "esptool_py": {
             "alias": "idf::esptool_py",
             "target": "___idf_esptool_py",
@@ -711,7 +771,7 @@
             "type": "LIBRARY",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "spi_flash", "shtc3", "mock-flash", "mock-wifi" ],
+            "priv_reqs": [ "nvs_flash", "spi_flash", "shtc3", "mock-flash", "mock-wifi", "button_monitor", "console_shell" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/main/libmain.a",
@@ -777,6 +837,21 @@
             "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/newlib/libnewlib.a",
             "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/init.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/abort.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/assert.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/heap.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/locks.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/poll.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/pthread.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/random.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/getentropy.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/termios.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/stdatomic.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/time.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/sysconf.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/realpath.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/scandir.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/syscalls.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/reent_syscalls.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/port/esp_time_impl.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/flockfile.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/reent_init.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/newlib_init.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib/src/port/esp_time_impl.c" ],
             "include_dirs": [ "platform_include" ]
+        },
+        "nvs_flash": {
+            "alias": "idf::nvs_flash",
+            "target": "___idf_nvs_flash",
+            "prefix": "idf",
+            "dir": "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash",
+            "type": "LIBRARY",
+            "lib": "__idf_nvs_flash",
+            "reqs": [ "esp_partition" ],
+            "priv_reqs": [ "spi_flash", "newlib" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/nvs_flash/libnvs_flash.a",
+            "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_api.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_cxx_api.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_item_hash_list.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_page.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_storage.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_handle_simple.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_handle_locked.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_partition.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_partition_lookup.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_types.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_platform.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_bootloader.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_encrypted_partition.cpp", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_bootloader_aes.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash/src/nvs_bootloader_xts_aes.c" ],
+            "include_dirs": [ "include" ]
         },
         "partition_table": {
             "alias": "idf::partition_table",
@@ -882,6 +957,21 @@
             "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/spi_flash/libspi_flash.a",
             "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/flash_brownout_hook.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_drivers.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_generic.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_issi.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_mxic.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_gd.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_winbond.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_boya.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_mxic_opi.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_chip_th.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/memspi_host_driver.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/cache_utils.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/flash_mmap.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/flash_ops.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_wrap.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/esp_flash_api.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/esp_flash_spi_init.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_os_func_app.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash/spi_flash_os_func_noos.c" ],
             "include_dirs": [ "include" ]
+        },
+        "vfs": {
+            "alias": "idf::vfs",
+            "target": "___idf_vfs",
+            "prefix": "idf",
+            "dir": "C:/Users/Admin/esp/v5.5.1/esp-idf/components/vfs",
+            "type": "LIBRARY",
+            "lib": "__idf_vfs",
+            "reqs": [],
+            "priv_reqs": [ "esp_timer", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_vfs_console" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/vfs/libvfs.a",
+            "sources": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/vfs/vfs.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/vfs/vfs_eventfd.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/vfs/vfs_semihost.c", "C:/Users/Admin/esp/v5.5.1/esp-idf/components/vfs/nullfs.c" ],
+            "include_dirs": [ "include" ]
         }
     },
     "all_component_info" : {
@@ -967,7 +1057,7 @@
             "priv_reqs": [ "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build" ]
+            "include_dirs": [ "C:/Users/Admin/esp/v5.5.1/esp-idf/components/console" ]
         },
         "cxx": {
             "alias": "idf::cxx",
@@ -2188,10 +2278,34 @@
             "dir": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/main",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "spi_flash", "shtc3", "mock-flash", "mock-wifi" ],
+            "priv_reqs": [ "nvs_flash", "spi_flash", "shtc3", "mock-flash", "mock-wifi", "button_monitor", "console_shell" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "include_dirs": []
+        },
+        "button_monitor": {
+            "alias": "idf::button_monitor",
+            "target": "___idf_button_monitor",
+            "prefix": "idf",
+            "dir": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/button_monitor",
+            "lib": "__idf_button_monitor",
+            "reqs": [ "esp_event", "driver", "esp_timer" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "include" ]
+        },
+        "console_shell": {
+            "alias": "idf::console_shell",
+            "target": "___idf_console_shell",
+            "prefix": "idf",
+            "dir": "D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/console_shell",
+            "lib": "__idf_console_shell",
+            "reqs": [ "esp_event", "console", "mock-flash" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "include" ]
         },
         "mock-flash": {
             "alias": "idf::mock-flash",

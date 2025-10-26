@@ -5856,6 +5856,53 @@
             {
                 "children": [],
                 "depends_on": null,
+                "help": null,
+                "id": "MONITOR_PERIOD_SEC",
+                "name": "MONITOR_PERIOD_SEC",
+                "range": [
+                    1,
+                    3600
+                ],
+                "title": "Periodo de monitorizacion (s)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": null,
+                "id": "BUTTON_PERIOD_SEC",
+                "name": "BUTTON_PERIOD_SEC",
+                "range": [
+                    1,
+                    60
+                ],
+                "title": "Periodo de muestreo del boton (s)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": null,
+                "id": "BUTTON_GPIO",
+                "name": "BUTTON_GPIO",
+                "range": [
+                    0,
+                    48
+                ],
+                "title": "GPIO boton",
+                "type": "int"
+            }
+        ],
+        "depends_on": null,
+        "id": "monitor-app-settings",
+        "title": "Monitor App Settings",
+        "type": "menu"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "depends_on": null,
                 "help": "Delay seconds between wifi_connect() call and sending event back",
                 "id": "CONNECT_DELAY",
                 "name": "CONNECT_DELAY",
@@ -6322,6 +6369,24 @@
     },
     {
         "children": [
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "Instead of listing the commands in the order of registration, the help command lists\nthe available commands in sorted order, if this option is enabled.",
+                        "id": "CONSOLE_SORTED_HELP",
+                        "name": "CONSOLE_SORTED_HELP",
+                        "range": null,
+                        "title": "Enable sorted help",
+                        "type": "bool"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-console-library",
+                "title": "Console Library",
+                "type": "menu"
+            },
             {
                 "children": [
                     {
@@ -13681,6 +13746,64 @@
                 "children": [
                     {
                         "children": [],
+                        "depends_on": "SECURE_FLASH_ENC_ENABLED || SOC_HMAC_SUPPORTED",
+                        "help": "This option enables encryption for NVS. When enabled, XTS-AES is used to encrypt\nthe complete NVS data, except the page headers. It requires XTS encryption keys\nto be stored in an encrypted partition (enabling flash encryption is mandatory here)\nor to be derived from an HMAC key burnt in eFuse.",
+                        "id": "NVS_ENCRYPTION",
+                        "name": "NVS_ENCRYPTION",
+                        "range": null,
+                        "title": "Enable NVS encryption",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": "SECURE_FLASH_ENC_ENABLED",
+                        "help": "Enabling this will ignore \"encrypted\" flag for NVS partitions. NVS encryption\nscheme is different than hardware flash encryption and hence it is not recommended\nto have \"encrypted\" flag for NVS partitions. This was not being checked in pre v4.3\nIDF. Hence, if you have any devices where this flag is kept enabled in partition\ntable then enabling this config will allow to have same behavior as pre v4.3 IDF.",
+                        "id": "NVS_COMPATIBLE_PRE_V4_3_ENCRYPTION_FLAG",
+                        "name": "NVS_COMPATIBLE_PRE_V4_3_ENCRYPTION_FLAG",
+                        "range": null,
+                        "title": "NVS partition encrypted flag compatible with ESP-IDF before v4.3",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "This option switches error checking type between assertions (y) or return codes (n).",
+                        "id": "NVS_ASSERT_ERROR_CHECK",
+                        "name": "NVS_ASSERT_ERROR_CHECK",
+                        "range": null,
+                        "title": "Use assertions for error checking",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "Enabling this option will switch the nvs_set() family of functions to the legacy mode:\nwhen called repeatedly with the same key but different data type, the existing value\nin the NVS remains active and the new value is just stored, actually not accessible through\ncorresponding nvs_get() call for the key given. Use this option only when your application\nrelies on such NVS API behaviour.",
+                        "id": "NVS_LEGACY_DUP_KEYS_COMPATIBILITY",
+                        "name": "NVS_LEGACY_DUP_KEYS_COMPATIBILITY",
+                        "range": null,
+                        "title": "Enable legacy nvs_set function behavior when same key is reused with different data types",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": "SPIRAM && (SPIRAM_USE_CAPS_ALLOC || SPIRAM_USE_MALLOC)",
+                        "help": "Enabling this option lets NVS library try to allocate page cache and key hash list in SPIRAM\ninstead of internal RAM. It can help applications using large nvs partitions or large number\nof keys to save heap space in internal RAM. SPIRAM heap allocation negatively impacts speed\nof NVS operations as the CPU accesses NVS cache via SPI instead of direct access to the internal RAM.",
+                        "id": "NVS_ALLOCATE_CACHE_IN_SPIRAM",
+                        "name": "NVS_ALLOCATE_CACHE_IN_SPIRAM",
+                        "range": null,
+                        "title": "Prefers allocation of in-memory cache structures in SPI connected PSRAM",
+                        "type": "bool"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-nvs",
+                "title": "NVS",
+                "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
                         "depends_on": null,
                         "help": "Priority used to create new tasks with default pthread parameters.",
                         "id": "PTHREAD_TASK_PRIO_DEFAULT",
@@ -14450,6 +14573,117 @@
                 "depends_on": "!APP_BUILD_TYPE_PURE_RAM_APP",
                 "id": "component-config-spi-flash-driver",
                 "title": "SPI Flash driver",
+                "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "VFS_SUPPORT_IO",
+                                "help": "If enabled, the following functions are provided by the VFS component.\n\nstat, link, unlink, rename, utime, access, truncate, rmdir, mkdir,\nopendir, closedir, readdir, readdir_r, seekdir, telldir, rewinddir\n\nFilesystem drivers can then be registered to handle these functions\nfor specific paths.\n\nDisabling this option can save memory when the support for these functions\nis not required.",
+                                "id": "VFS_SUPPORT_DIR",
+                                "name": "VFS_SUPPORT_DIR",
+                                "range": null,
+                                "title": "Provide directory related functions",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "VFS_SUPPORT_SELECT",
+                                        "help": "Select() related functions might produce an inconveniently lot of\ndebug outputs when one sets the default log level to DEBUG or higher.\nIt is possible to suppress these debug outputs by enabling this\noption.",
+                                        "id": "VFS_SUPPRESS_SELECT_DEBUG_OUTPUT",
+                                        "name": "VFS_SUPPRESS_SELECT_DEBUG_OUTPUT",
+                                        "range": null,
+                                        "title": "Suppress select() related debug outputs",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "VFS_SUPPORT_SELECT",
+                                        "help": "If enabled, VFS driver select() callback function will be placed in IRAM.",
+                                        "id": "VFS_SELECT_IN_RAM",
+                                        "name": "VFS_SELECT_IN_RAM",
+                                        "range": null,
+                                        "title": "Make VFS driver select() callbacks IRAM-safe",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "VFS_SUPPORT_IO && !LWIP_USE_ONLY_LWIP_SELECT",
+                                "help": "If enabled, select function is provided by the VFS component, and can be used\non peripheral file descriptors (such as UART) and sockets at the same time.\n\nIf disabled, the default select implementation will be provided by LWIP for\nsockets only.\n\nDisabling this option can reduce code size if support for \"select\" on UART file\ndescriptors is not required.",
+                                "id": "VFS_SUPPORT_SELECT",
+                                "name": "VFS_SUPPORT_SELECT",
+                                "range": null,
+                                "title": "Provide select function",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "VFS_SUPPORT_IO",
+                                "help": "Disabling this option can save memory when the support for termios.h is not required.",
+                                "id": "VFS_SUPPORT_TERMIOS",
+                                "name": "VFS_SUPPORT_TERMIOS",
+                                "range": null,
+                                "title": "Provide termios.h functions",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "VFS_SUPPORT_IO",
+                                "help": "Define maximum number of virtual filesystems that can be registered.",
+                                "id": "VFS_MAX_COUNT",
+                                "name": "VFS_MAX_COUNT",
+                                "range": [
+                                    1,
+                                    20
+                                ],
+                                "title": "Maximum Number of Virtual Filesystems",
+                                "type": "int"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "VFS_SUPPORT_IO",
+                                        "help": "Define maximum number of host filesystem mount points.",
+                                        "id": "VFS_SEMIHOSTFS_MAX_MOUNT_POINTS",
+                                        "name": "VFS_SEMIHOSTFS_MAX_MOUNT_POINTS",
+                                        "range": null,
+                                        "title": "Host FS: Maximum number of the host filesystem mount points",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": "VFS_SUPPORT_IO",
+                                "id": "component-config-virtual-file-system-provide-basic-i-o-functions-host-file-system-i-o-semihosting-",
+                                "title": "Host File System I/O (Semihosting)",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "VFS_SUPPORT_IO",
+                                "help": "If enabled, /dev/null VFS will be automatically initialized at startup.",
+                                "id": "VFS_INITIALIZE_DEV_NULL",
+                                "name": "VFS_INITIALIZE_DEV_NULL",
+                                "range": null,
+                                "title": "Initialize /dev/null VFS",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "help": "If enabled, the following functions are provided by the VFS component.\n\nopen, close, read, write, pread, pwrite, lseek, fstat, fsync, ioctl, fcntl\n\nFilesystem drivers can then be registered to handle these functions\nfor specific paths.\n\nDisabling this option can save memory when the support for these functions\nis not required.\n\nNote that the following functions can still be used with socket file descriptors\nwhen this option is disabled:\n\nclose, read, write, ioctl, fcntl.",
+                        "id": "VFS_SUPPORT_IO",
+                        "name": "VFS_SUPPORT_IO",
+                        "range": null,
+                        "title": "Provide basic I/O functions",
+                        "type": "bool"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-virtual-file-system",
+                "title": "Virtual file system",
                 "type": "menu"
             },
             {

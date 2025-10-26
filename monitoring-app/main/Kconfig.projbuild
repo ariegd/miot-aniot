@@ -1,0 +1,14 @@
+menu "Monitor App Settings"
+config MONITOR_PERIOD_SEC
+    int "Periodo de monitorizacion (s)"
+    range 1 3600
+    default 5
+config BUTTON_PERIOD_SEC
+    int "Periodo de muestreo del boton (s)"
+    range 1 60
+    default 1
+config BUTTON_GPIO
+    int "GPIO boton"
+    range 0 48
+    default 9
+endmenu
