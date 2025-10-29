@@ -4,6 +4,7 @@
 #include "argtable3/argtable3.h"
 #include "mock-flash.h"
 #include "esp_log.h"
+#include "esp_vfs_dev.h"
 #include <stdatomic.h>
 
 static const char* TAG="CONSOLE";
@@ -12,15 +13,19 @@ static _Atomic bool s_running = false;
 static TaskHandle_t s_task = NULL;
 
 static int cmd_help(int argc, char **argv) {
-    printf("Comandos disponibles:\n  help\n  monitor\n  quota\n");
+    ESP_LOGI(TAG, "Comandos disponibles:");
+    ESP_LOGI(TAG, "  help");
+    ESP_LOGI(TAG, "  monitor");
+    ESP_LOGI(TAG, "  quota");
     return 0;
 }
 static int cmd_monitor(int argc, char **argv) {
+    ESP_LOGI(TAG, "Ejecutando comando 'monitor' → volver a modo monitorización");
     esp_event_post_to(s_loop, s_base, s_evt, NULL, 0, portMAX_DELAY);
     return 0;
 }
 static int cmd_quota(int argc, char **argv) {
-    printf("Flash ocupada: %u bytes\n", (unsigned)getDataLeft());
+    ESP_LOGI(TAG, "Flash ocupada: %u bytes", (unsigned)getDataLeft());
     return 0;
 }
 
@@ -33,6 +38,18 @@ static void register_cmds(void){
     for (size_t i=0;i<sizeof(cmds)/sizeof(cmds[0]);++i) esp_console_cmd_register(&cmds[i]);
 }
 
+
+static void init_console_usbcdc(void) {
+    //esp_vfs_dev_usb_serial_jtag_set_rx_line_endings(ESP_LINE_ENDINGS_CR);
+    //esp_vfs_dev_usb_serial_jtag_set_tx_line_endings(ESP_LINE_ENDINGS_CRLF);
+
+    // sin buffering para ver el prompt al instante
+    setvbuf(stdin,  NULL, _IONBF, 0);
+    setvbuf(stdout, NULL, _IONBF, 0);
+    setvbuf(stderr, NULL, _IONBF, 0);
+
+}
+
 static void console_task(void *arg){
     esp_console_config_t console_cfg = {
         .max_cmdline_args = 8,
@@ -41,22 +58,21 @@ static void console_task(void *arg){
         .hint_color = 0
 #endif
     };
+    init_console_usbcdc();
     esp_console_init(&console_cfg);
     register_cmds();
     linenoiseSetMultiLine(1);
     linenoiseHistorySetMaxLen(32);
-    printf("\n[CONSOLE] Escribe 'help'. 'monitor' para salir.\n");
+    ESP_LOGI(TAG, "[CONSOLE] Escribe 'help'. 'monitor' para salir.");
     s_running = true;
-    while (s_running) {
-        char* line = linenoise("> ");
-        if (line == NULL) continue;
+
+    char* line = linenoise("monitor");
         if (strlen(line) > 0) {
             int ret;
             esp_console_run(line, &ret);
             linenoiseHistoryAdd(line);
         }
         linenoiseFree(line);
-    }
     esp_console_deinit();
     vTaskDelete(NULL);
 }

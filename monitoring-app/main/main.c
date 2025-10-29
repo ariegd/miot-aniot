@@ -48,16 +48,14 @@ static esp_event_loop_handle_t app_loop = NULL;
 #define CONFIG_BUTTON_PERIOD_SEC 1
 #endif
 #ifndef CONFIG_BUTTON_GPIO
-#define CONFIG_BUTTON_GPIO 9
+#define CONFIG_BUTTON_GPIO 2
 #endif
 #ifndef CONFIG_FLASH_CAPACITY_BYTES
 #define CONFIG_FLASH_CAPACITY_BYTES (16*1024)   // capacidad de la mock-flash en bytes
 #endif
 
-/*** Temporizador para “sensor” simulado ***/
-static esp_timer_handle_t s_sensor_timer;
+static esp_timer_handle_t s_sensor_timer; //Temporidzados
 
-/*** Simulación de medición (temperatura/humedad) ***/
 static void do_fake_measure(float *t, float *h) {
     static float base_t = 24.0f, base_h = 45.0f;
     uint64_t us = esp_timer_get_time();
@@ -69,14 +67,12 @@ static void sensor_tick_cb(void *arg) {
     esp_event_post_to(app_loop, APP_EVENTS, EVT_SENSOR_TICK, NULL, 0, portMAX_DELAY);
 }
 
-/*** Drenado de flash: lee floats y los envía por WiFi ***/
-static void drain_flash_if_possible(void) {
+static void drain_flash_if_possible(void) { //lee floats y los envía por WiFi
     if (!g_has_ip) return;
     while (getDataLeft() >= sizeof(float)) {
         float *pf = (float*)readFromFlash(sizeof(float));
         if (!pf) break;
-        if (send_data_wifi(pf, sizeof(float)) != ESP_OK) {
-            // si falla, reinsertamos al principio (estrategia simple: volvemos a escribir)
+        if (send_data_wifi(pf, sizeof(float)) != ESP_OK) { //si falla volvemos a insertar
             writeToFlash(pf, sizeof(float));
             free(pf);
             break;
@@ -85,8 +81,11 @@ static void drain_flash_if_possible(void) {
     }
 }
 
-/*** Manejador de eventos ***/
-static void on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data) {
+static void reconnect_cb(void *arg) {
+    wifi_connect();
+}
+
+static void on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data) { //manejador de eventos
     if (base == WIFI_MOCK) {
         switch (id) {
             case WIFI_MOCK_EVENT_WIFI_CONNECTED:
@@ -100,6 +99,17 @@ static void on_event(void *handler_arg, esp_event_base_t base, int32_t id, void 
             case WIFI_MOCK_EVENT_WIFI_DISCONNECTED:
                 g_has_ip = false;
                 ESP_LOGW(TAG, "WiFi desconectado (mock)");
+                if (g_mode == MODE_MONITOR) {
+                static esp_timer_handle_t s_reconnect_timer = NULL;
+                if (!s_reconnect_timer) {
+                    const esp_timer_create_args_t args = {
+                        .callback = &reconnect_cb,
+                        .name = "reconn"
+                    };
+                    ESP_ERROR_CHECK(esp_timer_create(&args, &s_reconnect_timer));
+                    }
+                    ESP_ERROR_CHECK(esp_timer_start_once(s_reconnect_timer, 3 * 1000000ULL));
+                }
                 break;
         }
         return;
@@ -107,13 +117,12 @@ static void on_event(void *handler_arg, esp_event_base_t base, int32_t id, void 
 
     if (base == APP_EVENTS) {
         switch (id) {
-            case EVT_SENSOR_TICK: {
+            case EVT_SENSOR_TICK: { //Enviamos temp y hum para el mockeo
                 if (g_mode != MODE_MONITOR) break;
                 float t, h;
                 do_fake_measure(&t, &h);
 
-                if (g_has_ip) {
-                    // Enviamos dos floats (temp y hum) en llamadas separadas para ajustarnos al mock
+                if (g_has_ip) { 
                     if (send_data_wifi(&t, sizeof(float)) != ESP_OK) {
                         writeToFlash(&t, sizeof(float));
                     }
@@ -126,10 +135,9 @@ static void on_event(void *handler_arg, esp_event_base_t base, int32_t id, void 
                 }
                 break;
             }
-            case EVT_BUTTON_PRESSED:
+            case EVT_BUTTON_PRESSED: //Desactivamos
                 ESP_LOGI(TAG, "Botón pulsado ⇒ MODO CONSOLA");
                 if (g_mode != MODE_CONSOLE) {
-                    // parar “sensor” (temporizador) y desconectar WiFi
                     esp_timer_stop(s_sensor_timer);
                     wifi_disconnect();
                     g_has_ip = false;
@@ -137,14 +145,12 @@ static void on_event(void *handler_arg, esp_event_base_t base, int32_t id, void 
                     console_start(app_loop);
                 }
                 break;
-            case EVT_CONSOLE_CMD_MONITOR:
+            case EVT_CONSOLE_CMD_MONITOR: //Reconectamos
                 ESP_LOGI(TAG, "Consola: volver a monitorización");
                 console_stop();
                 g_mode = MODE_MONITOR;
-                // relanzar sensor
                 esp_timer_start_periodic(s_sensor_timer, (uint64_t)CONFIG_MONITOR_PERIOD_SEC * 1000000ULL);
-                // reconectar WiFi mock (con sus latencias del menuconfig del mock)
-                wifi_connect();
+                wifi_connect(); 
                 break;
         }
     }
@@ -154,7 +160,6 @@ void app_main(void)
 {
     ESP_ERROR_CHECK(nvs_flash_init());
 
-    // Bucle de eventos de la app
     esp_event_loop_args_t loop_args = {
         .queue_size = 16,
         .task_name = "app_event_loop",
@@ -164,33 +169,28 @@ void app_main(void)
     };
     ESP_ERROR_CHECK(esp_event_loop_create(&loop_args, &app_loop));
 
-    // Registrar handler para eventos de la app y del mock WiFi
-    ESP_ERROR_CHECK(esp_event_handler_instance_register_with(
+    ESP_ERROR_CHECK(esp_event_handler_instance_register_with( //Registrar handler para eventos de la app
         app_loop, APP_EVENTS, ESP_EVENT_ANY_ID, on_event, NULL, NULL));
-    ESP_ERROR_CHECK(esp_event_handler_instance_register_with(
+    ESP_ERROR_CHECK(esp_event_handler_instance_register_with( //Registrar handler para eventos de la app
         app_loop, WIFI_MOCK, ESP_EVENT_ANY_ID, on_event, NULL, NULL));
 
-    // Inicializar mock-flash (capacidad en BYTES)
-    ESP_ERROR_CHECK(mock_flash_init(CONFIG_FLASH_CAPACITY_BYTES));
+    ESP_ERROR_CHECK(mock_flash_init(CONFIG_FLASH_CAPACITY_BYTES)); // Inicializar mock-flash (capacidad en BYTES)
 
-    // Inicializar mock-wifi
     wifi_mock_init(app_loop);
 
-    // Botón y consola (usa tus componentes existentes)
     button_init(app_loop, APP_EVENTS, EVT_BUTTON_PRESSED,
-                CONFIG_BUTTON_GPIO, CONFIG_BUTTON_PERIOD_SEC);
+                CONFIG_BUTTON_GPIO, CONFIG_BUTTON_PERIOD_SEC);      // Botón y consola, componentes
     console_init(app_loop, APP_EVENTS, EVT_CONSOLE_CMD_MONITOR);
 
-    // Temporizador periódico para el “sensor”
     const esp_timer_create_args_t sens_args = {
         .callback = &sensor_tick_cb, .name = "sensor_tick"
     };
     esp_timer_create(&sens_args, &s_sensor_timer);
 
-    // Arranque en MONITOR: sensor + WiFi
-    g_mode = MODE_MONITOR;
+    g_mode = MODE_MONITOR;//MODO CONSOLA o MONITOR
     esp_timer_start_periodic(s_sensor_timer, (uint64_t)CONFIG_MONITOR_PERIOD_SEC * 1000000ULL);
     wifi_connect();
 
     ESP_LOGI(TAG, "Sistema iniciado en modo MONITOR (mock_wifi + mock_flash)");
+    //esp_event_post_to(app_loop, APP_EVENTS, EVT_BUTTON_PRESSED, NULL, 0, portMAX_DELAY);
 }

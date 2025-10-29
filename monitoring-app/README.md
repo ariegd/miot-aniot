@@ -1,53 +1,14 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-H21 | ESP32-H4 | ESP32-P4 | ESP32-S2 | ESP32-S3 | Linux |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | --------- | -------- | -------- | -------- | -------- | ----- |
+La aplicación desarrollada en esta practica implementa un sistema basado en el esp32-c3 que combina el uso de tareas de freertos y el mecanismo de eventos del esp-idf para organizar su funcionamiento el sistema se estructura en dos modos principales de operación el modo de monitorización y el modo consola
 
-# Hello World Example
-
-Starts a FreeRTOS task to print "Hello World".
-
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
-
-## How to use example
-
-Follow detailed instructions provided specifically for this example.
-
-Select the instructions depending on Espressif chip installed on your development board:
-
-- [ESP32 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html)
-- [ESP32-S2 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html)
+--> En el modo de monitorización el sistema realiza la lectura periodica de la temperatura y la humedad mediante el sensor shtc3 o su simulación las medidas se obtienen con un período configurable a través de menuconfig cada vez que se genera una nueva lectura el sensor publica un evento que es procesado por la aplicación principal la cual decide si los datos deben enviarse por red o almacenarse temporalmente en una memoria flash simulada.
 
 
-## Example folder contents
+--> El modo consola utiliza el componente console del esp-idf que permite una interfaz interactiva por puerto serie la consola dispone de tres comandos help que muestra los comandos disponibles quota que indica los bytes ocupados en la flash simulada y monitor que permite volver manualmente al modo de monitorización mientras el sistema esta en modo consola no se realizan lecturas del sensor ni envíos de datos y la conexión wifi permanece desactivada, aunque no he conseguido escribir en la consola y no hemos podido saber porque no funciona.
 
-The project **hello_world** contains one source file in C language [hello_world_main.c](main/hello_world_main.c). The file is located in folder [main](main).
+La conectividad de red se maneja mediante un componente denominado mock_wifi este componente no establece una conexión real sino que simula los tiempos de conexión la obtención de ip y la pérdida de red para emular el comportamiento de una conexión wifi real mock_wifi dispone de las funciones wifi_connect wifi_disconnect y send_data_wifi y genera tres tipos de eventos wifi_mock_event_wifi_connected wifi_mock_event_wifi_got_ip y wifi_mock_event_wifi_disconnected mientras.
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt` files that provide set of directives and instructions describing the project's source files and targets (executable, library, or both).
+Cuando la simulación del wifi indica que se ha obtenido ip el sistema cambia su estado interno marcando g_has_ip en verdadero y ejecuta una función que drena la memoria flash enviando todos los datos almacenados con send_data_wifi una vez vaciado el buffer las siguientes lecturas del sensor se transmiten directamente si la conexión se pierde el evento wifi_disconnected marca nuevamente g_has_ip como falso y las lecturas vuelven a almacenarse en la memoria flash la aplicacion.
 
-Below is short explanation of remaining files in the project folder.
+El sistema tambien incluye un componente llamado button_monitor que vigila el estado de un pin de entrada configurado en menuconfig este componente detecta la pulsacion de un boton fisico o simulado y genera el evento evt_button_pressed cuando se detecta este evento la aplicación principal cambia de modo y pasa al modo consola durante este cambio se detiene el temporizador de lectura del sensor se desconecta la wifi y se muestra el mensaje entrando en modo consola al entrar en este modo el sistema inicia una cuenta atrás de diez segundos al finalizar este tiempo o si el usuario introduce el comando monitor se regresa automáticamente al modo de monitorización reactivando el sensor y la conexion wifi.
 
-```
-├── CMakeLists.txt
-├── pytest_hello_world.py      Python script used for automated testing
-├── main
-│   ├── CMakeLists.txt
-│   └── hello_world_main.c
-└── README.md                  This is the file you are currently reading
-```
-
-For more information on structure and contents of ESP-IDF projects, please refer to Section [Build System](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html) of the ESP-IDF Programming Guide.
-
-## Troubleshooting
-
-* Program upload failure
-
-    * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
-    * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
-
-## Technical support and feedback
-
-Please use the following feedback channels:
-
-* For technical queries, go to the [esp32.com](https://esp32.com/) forum
-* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-idf/issues)
-
-We will get back to you as soon as possible.
+En cuanto a la arquitectura interna el sistema esta organizado por componentes modulares cada uno con responsabilidades bien definidas el sensor genera eventos periódicos el mock_wifi maneja la simulacion de red el mock_flash almacena los datos el button_monitor gestiona la interaccion física y el console_shell ofrece la interfaz de usuario todos estos componentes se comunican mediante el sistema de eventos del esp-idf usando esp_event_post_to y esp_event_handler_instance_register_with lo que permite un funcionamiento concurrente y desacoplado.

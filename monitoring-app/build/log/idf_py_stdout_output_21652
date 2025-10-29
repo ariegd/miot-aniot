@@ -1,0 +1,53 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\Admin\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DIDF_TARGET=esp32c3 -DCCACHE_ENABLE=0 D:\Universidad\MasterIoT\1Cuatrimestre\ANIOT\Practicas\Practica3-Entregable\miot-aniot\monitoring-app
+-- Existing sdkconfig 'D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/sdkconfig' renamed to 'D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/sdkconfig.old'.
+-- Found Git: C:/Users/Admin/.espressif/tools/idf-git/2.39.2/cmd/git.exe (found version "2.39.2.windows.1")
+-- Minimal build - ON
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: C:/Users/Admin/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/Admin/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/Admin/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ESP-IDF components for target esp32c3
+-- Project sdkconfig file D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/sdkconfig
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/riscv/ld/rom.api.ld
+-- Found Python3: C:/Users/Admin/.espressif/python_env/idf5.5_py3.11_env/Scripts/python.exe (found version "3.11.2") found components: Interpreter
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- USING O3
+-- App "monitoring-app" version: 08f727b-dirty
+-- Adding linker script D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.api.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.bt_funcs.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libgcc.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.version.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_master.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_50.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_smp.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_dtm.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_test.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_scan.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.eco3.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.eco3_bt_funcs.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libc.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libc-suboptimal_for_misaligned_mem.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.newlib.ld
+-- Adding linker script C:/Users/Admin/esp/v5.5.1/esp-idf/components/soc/esp32c3/ld/esp32c3.peripherals.ld
+-- Components: app_update bootloader bootloader_support button_monitor console console_shell cxx driver efuse esp_app_format esp_bootloader_format esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_event esp_hw_support esp_mm esp_partition esp_pm esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console esptool_py freertos hal heap log main mbedtls mock-flash mock-wifi newlib nvs_flash partition_table pthread riscv sdmmc shtc3 soc spi_flash vfs
+-- Component paths: C:/Users/Admin/esp/v5.5.1/esp-idf/components/app_update C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader C:/Users/Admin/esp/v5.5.1/esp-idf/components/bootloader_support D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/button_monitor C:/Users/Admin/esp/v5.5.1/esp-idf/components/console D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/console_shell C:/Users/Admin/esp/v5.5.1/esp-idf/components/cxx C:/Users/Admin/esp/v5.5.1/esp-idf/components/driver C:/Users/Admin/esp/v5.5.1/esp-idf/components/efuse C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_app_format C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_bootloader_format C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_common C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_bitscrambler C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_dac C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gpio C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_gptimer C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2c C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_i2s C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_ledc C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_parlio C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_pcnt C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_rmt C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdio C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdm C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdmmc C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_sdspi C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_spi C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_tsens C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_twai C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_uart C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_event C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_hw_support C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_mm C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_partition C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_pm C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_ringbuf C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_rom C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_security C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_system C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_timer C:/Users/Admin/esp/v5.5.1/esp-idf/components/esp_vfs_console C:/Users/Admin/esp/v5.5.1/esp-idf/components/esptool_py C:/Users/Admin/esp/v5.5.1/esp-idf/components/freertos C:/Users/Admin/esp/v5.5.1/esp-idf/components/hal C:/Users/Admin/esp/v5.5.1/esp-idf/components/heap C:/Users/Admin/esp/v5.5.1/esp-idf/components/log D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/main C:/Users/Admin/esp/v5.5.1/esp-idf/components/mbedtls D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-flash D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/mock-wifi C:/Users/Admin/esp/v5.5.1/esp-idf/components/newlib C:/Users/Admin/esp/v5.5.1/esp-idf/components/nvs_flash C:/Users/Admin/esp/v5.5.1/esp-idf/components/partition_table C:/Users/Admin/esp/v5.5.1/esp-idf/components/pthread C:/Users/Admin/esp/v5.5.1/esp-idf/components/riscv C:/Users/Admin/esp/v5.5.1/esp-idf/components/sdmmc D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/components/shtc3 C:/Users/Admin/esp/v5.5.1/esp-idf/components/soc C:/Users/Admin/esp/v5.5.1/esp-idf/components/spi_flash C:/Users/Admin/esp/v5.5.1/esp-idf/components/vfs
+-- Configuring done (11.6s)
+-- Generating done (1.0s)
+-- Build files have been written to: D:/Universidad/MasterIoT/1Cuatrimestre/ANIOT/Practicas/Practica3-Entregable/miot-aniot/monitoring-app/build

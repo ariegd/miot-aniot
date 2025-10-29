@@ -18,6 +18,8 @@
   ],
   "idf.flashType": "UART",
   "files.associations": {
-    "mock-flash.h": "c"
+    "mock-flash.h": "c",
+    "esp_console.h": "c",
+    "uart.h": "c"
   }
 }
