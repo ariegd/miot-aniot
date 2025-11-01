@@ -1,8 +1,3 @@
-/*
- * SPDX-FileCopyrightText: 2010-2022 Espressif Systems (Shanghai) CO LTD
- *
- * SPDX-License-Identifier: CC0-1.0
- */
 
 #include <stdio.h>
 #include <inttypes.h>
@@ -18,6 +13,10 @@ ESP_EVENT_DEFINE_BASE(SENSOR_EVENT);
 
 #include "shtc3.h"  // <-- componente para temperatura
 #include "esp_log.h"  // <-- LOGGING
+
+#include "esp_event.h" // <-- probando lo modular :)
+#include "shtc3_driver.h"
+#include "logger_task.h"
 
 static const char *TAG = "EventSht3c";
 
@@ -143,7 +142,26 @@ void p4MeasureHumidityTask(void *pvParameters)
     }
 }
 
+
+void start_modular(void) {
+    esp_event_loop_args_t loop_args = {
+        .queue_size = 5,
+        .task_name = "sensor_event_task",
+        .task_priority = uxTaskPriorityGet(NULL),
+        .task_stack_size = 4096,
+        .task_core_id = tskNO_AFFINITY
+    };
+
+    esp_event_loop_handle_t sensor_event_loop;
+    ESP_ERROR_CHECK(esp_event_loop_create(&loop_args, &sensor_event_loop));
+
+    // Inicializar módulos
+    sensor_init(sensor_event_loop);
+    logger_init(sensor_event_loop);
+}
+
 void app_main(void) {
+    /*
     // Crear el event loop
     esp_event_loop_args_t loop_args = {
         .queue_size = 5,
@@ -160,5 +178,8 @@ void app_main(void) {
     // Crear la tarea muestreadora, pasando el periodo como argumento
     static uint32_t periodo_ms = 3000;
     xTaskCreate(p4MeasureHumidityTask, "p3MeasureHumidityTask", 4096, &periodo_ms, 5, NULL);
+    */
+    
+    start_modular() ;
 }
 
