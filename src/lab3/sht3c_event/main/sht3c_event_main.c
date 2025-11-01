@@ -17,6 +17,9 @@ ESP_EVENT_DEFINE_BASE(SENSOR_EVENT);
 #include "esp_event.h" // <-- probando lo modular :)
 #include "shtc3_driver.h"
 #include "logger_task.h"
+#include "wifi_sim.h"
+#include "flash_sim.h"
+#include "button_console.h"
 
 static const char *TAG = "EventSht3c";
 
@@ -143,6 +146,41 @@ void p4MeasureHumidityTask(void *pvParameters)
 }
 
 
+static void wifi_event_handler_1(void* arg, esp_event_base_t base, int32_t id, void* data)
+{
+    switch (id) {
+        case WIFI_CONECTADO:
+            ESP_LOGI("APP", "Evento: WiFi conectado");
+            break;
+        case IP_CONSEGUIDA:
+            ESP_LOGI("APP", "Evento: IP conseguida, ya se pueden enviar datos");
+            send_data_wifi("Temperatura=23.5, Humedad=45%", strlen("Temperatura=23.5, Humedad=45%"));
+            break;
+        case WIFI_DESCONECTADO:
+            ESP_LOGW("APP", "Evento: WiFi desconectado, intentando reconectar...");
+            wifi_connect();
+            break;
+    }
+}
+
+void start_wifi_1(void) {
+    esp_event_loop_args_t loop_args = {
+        .queue_size = 5,
+        .task_name = "wifi_event_task",
+        .task_priority = uxTaskPriorityGet(NULL),
+        .task_stack_size = 4096,
+        .task_core_id = tskNO_AFFINITY
+    };
+
+    esp_event_loop_handle_t wifi_loop;
+    ESP_ERROR_CHECK(esp_event_loop_create(&loop_args, &wifi_loop));
+
+    wifi_sim_init(wifi_loop);
+    esp_event_handler_register_with(wifi_loop, WIFI_EVENT_SIM_BASE, ESP_EVENT_ANY_ID, wifi_event_handler_1, NULL);
+
+    wifi_connect();
+}
+
 void start_modular(void) {
     esp_event_loop_args_t loop_args = {
         .queue_size = 5,
@@ -158,6 +196,69 @@ void start_modular(void) {
     // Inicializar módulos
     sensor_init(sensor_event_loop);
     logger_init(sensor_event_loop);
+}
+
+static void wifi_event_handler(void* arg, esp_event_base_t base, int32_t id, void* data)
+{
+    switch (id) {
+        case WIFI_CONECTADO:
+            ESP_LOGI(TAG, "WiFi conectada");
+            break;
+        case IP_CONSEGUIDA:
+            ESP_LOGI(TAG, "IP conseguida, enviando datos almacenados...");
+            while (getDataLeft() >= sizeof(float)) {
+                void* value = readFromFlash(sizeof(float));
+                char msg[32];
+                sprintf(msg, "Dato pendiente: %.2f", *(float*)value);
+                send_data_wifi(msg, strlen(msg));
+            }
+            break;
+        case WIFI_DESCONECTADO:
+            ESP_LOGW(TAG, "WiFi desconectada");
+            break;
+    }
+}
+
+static void button_event_handler(void* arg, esp_event_base_t base, int32_t id, void* data)
+{
+    switch (id) {
+        case ENTER_CONSOLE_MODE:
+            ESP_LOGI(TAG, "Entrando en modo consola");
+            wifi_disconnect();
+            // detener tarea del sensor (puede controlarse con variable global)
+            break;
+        case EXIT_CONSOLE_MODE:
+            ESP_LOGI(TAG, "Saliendo del modo consola");
+            wifi_connect();
+            // reactivar sensor
+            break;
+    }
+}
+
+void start_main_event(void) {
+    esp_event_loop_args_t loop_args = {
+        .queue_size = 10,
+        .task_name = "main_event_task",
+        .task_priority = uxTaskPriorityGet(NULL),
+        .task_stack_size = 4096
+    };
+
+    esp_event_loop_handle_t main_loop;
+    ESP_ERROR_CHECK(esp_event_loop_create(&loop_args, &main_loop));
+
+    // Inicializar componentes
+    flash_sim_init();
+    wifi_sim_init(main_loop);
+    button_console_init(main_loop);
+
+    // Registrar handlers
+    esp_event_handler_register_with(main_loop, WIFI_EVENT_SIM_BASE, ESP_EVENT_ANY_ID, wifi_event_handler, NULL);
+    esp_event_handler_register_with(main_loop, BUTTON_EVENT_BASE, ESP_EVENT_ANY_ID, button_event_handler, NULL);
+
+    // Iniciar WiFi simulada
+    wifi_connect();
+
+    // Aquí inicializarías el sensor SHTC3 y sus eventos
 }
 
 void app_main(void) {
@@ -180,6 +281,8 @@ void app_main(void) {
     xTaskCreate(p4MeasureHumidityTask, "p3MeasureHumidityTask", 4096, &periodo_ms, 5, NULL);
     */
     
+    start_main_event();
     start_modular() ;
+    //start_wifi_1();
 }
 

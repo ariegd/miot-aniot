@@ -498,8 +498,23 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 # Sensor configuration
 #
-CONFIG_SENSOR_SAMPLING_PERIOD_MS=3000
+CONFIG_SENSOR_SAMPLING_PERIOD_MS=5000
 # end of Sensor configuration
+
+#
+# Button and Console Configuration
+#
+CONFIG_BUTTON_GPIO=9
+CONFIG_BUTTON_CHECK_PERIOD_MS=500
+# end of Button and Console Configuration
+
+#
+# WiFi Simulation Configuration
+#
+CONFIG_WIFI_SIM_LATENCIA_CONEXION_MS=2000
+CONFIG_WIFI_SIM_LATENCIA_IP_MS=1000
+CONFIG_WIFI_SIM_TIEMPO_DESCONECTAR_S=20
+# end of WiFi Simulation Configuration
 
 #
 # Compiler options
