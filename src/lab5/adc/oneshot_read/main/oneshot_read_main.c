@@ -13,8 +13,9 @@
 #include "esp_adc/adc_oneshot.h"
 #include "esp_adc/adc_cali.h"
 #include "esp_adc/adc_cali_scheme.h"
+#include <math.h> // Necesario para la fórmula de potencia (pow)
 
-const static char *TAG = "EXAMPLE";
+const static char *TAG = "DISTANCIA_APP";
 
 /*---------------------------------------------------------------
         ADC General Macros
@@ -47,15 +48,29 @@ const static char *TAG = "EXAMPLE";
 
 #define EXAMPLE_ADC_ATTEN           ADC_ATTEN_DB_12
 
+
+// --- Tarea 1- Configuración del ADC (Añadir esto arriba del todo) ---
+#define ADC_UNIT            ADC_UNIT_1      // Usamos la Unidad 1 del ADC
+#define ADC_CHANNEL         ADC_CHANNEL_4   // Canal 4 (Generalmente corresponde al GPIO 4)
+#define ADC_ATTEN           ADC_ATTEN_DB_12 // Atenuación de 12dB para leer hasta ~3.1V
+
+
+/*Tarea 1*/
+static int adc_raw_d;
+static int voltage_mv;
+void app_distancia(void);
+void app_calibracion(void);
+static bool example_adc_calibration_init_distancia(adc_unit_t unit, adc_channel_t channel, adc_atten_t atten, adc_cali_handle_t *out_handle);
+
 static int adc_raw[2][10];
 static int voltage[2][10];
 static bool example_adc_calibration_init(adc_unit_t unit, adc_channel_t channel, adc_atten_t atten, adc_cali_handle_t *out_handle);
 static void example_adc_calibration_deinit(adc_cali_handle_t handle);
-void calibracion(void);
 
 void app_main(void)
 {
-    calibracion();
+    //app_calibracion();
+    app_distancia();
 }
 
 /*---------------------------------------------------------------
@@ -122,7 +137,7 @@ static void example_adc_calibration_deinit(adc_cali_handle_t handle)
 #endif
 }
 
-void calibracion(void)
+void app_calibracion(void)
 {
     //-------------ADC1 Init---------------//
     adc_oneshot_unit_handle_t adc1_handle;
@@ -205,4 +220,111 @@ void calibracion(void)
         example_adc_calibration_deinit(adc2_cali_handle);
     }
 #endif //#if EXAMPLE_USE_ADC2
+}
+
+void app_distancia(void)
+{
+  // ------------- INICIALIZACIÓN DEL ADC -------------
+    adc_oneshot_unit_handle_t adc1_handle;
+    adc_oneshot_unit_init_cfg_t init_config1 = {
+        .unit_id = ADC_UNIT,
+    };
+    ESP_ERROR_CHECK(adc_oneshot_new_unit(&init_config1, &adc1_handle));
+
+    // ------------- CONFIGURACIÓN DEL CANAL -------------
+    adc_oneshot_chan_cfg_t config = {
+        .bitwidth = ADC_BITWIDTH_DEFAULT,
+        .atten = ADC_ATTEN, // Importante: DB_12 permite leer el rango completo del Sharp
+    };
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL, &config));
+
+    // ------------- CALIBRACIÓN (Para tener voltaje preciso) -------------
+    adc_cali_handle_t adc1_cali_handle = NULL;
+    bool do_calibration = example_adc_calibration_init_distancia(ADC_UNIT, ADC_CHANNEL, ADC_ATTEN, &adc1_cali_handle);
+
+    ESP_LOGI(TAG, "Iniciando lecturas del sensor GP2Y0A41SK0F...");
+
+    while (1) {
+        // 1. Leer valor crudo (Raw)
+        ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, ADC_CHANNEL, &adc_raw_d));
+
+        if (do_calibration) {
+            // 2. Convertir a Voltaje (Milivoltios)
+            ESP_ERROR_CHECK(adc_cali_raw_to_voltage(adc1_cali_handle, adc_raw_d, &voltage_mv));
+            
+            // 3. Cálculo de Distancia para GP2Y0A41SK0F
+            // El sensor da ~3.0V a 4cm y ~0.4V a 30cm[cite: 99, 127].
+            float voltage_v = voltage_mv / 1000.0;
+            float distance_cm = 0;
+
+            // Evitamos ruido y divisiones por cero
+            if (voltage_v > 0.1) {
+                // Fórmula aproximada para el modelo 4-30cm: D = 12.08 * V^(-1.058)
+                distance_cm = 12.08 * pow(voltage_v, -1.058);
+            } else {
+                distance_cm = 999; // Fuera de rango (muy lejos)
+            }
+
+            // Filtrar límites físicos del sensor (4 a 30 cm) [cite: 4]
+            if (distance_cm > 30.0) distance_cm = 30.0; 
+            if (distance_cm < 4.0) distance_cm = 4.0;
+
+            ESP_LOGI(TAG, "Raw: %d | Voltaje: %d mV | Distancia: %.2f cm", adc_raw_d, voltage_mv, distance_cm);
+
+        } else {
+            // Si falla la calibración, mostramos solo RAW
+            ESP_LOGW(TAG, "Sin calibración - Raw: %d", adc_raw_d);
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(500)); // Leer cada 500ms
+    }
+
+    // Limpieza (Tear Down)
+    ESP_ERROR_CHECK(adc_oneshot_del_unit(adc1_handle));
+    if (do_calibration) {
+        example_adc_calibration_deinit(adc1_cali_handle);
+    }
+}
+
+/*---------------------------------------------------------------
+        Lectura distancia
+---------------------------------------------------------------*/
+static bool example_adc_calibration_init_distancia(adc_unit_t unit, adc_channel_t channel, adc_atten_t atten, adc_cali_handle_t *out_handle)
+{
+    adc_cali_handle_t handle = NULL;
+    esp_err_t ret = ESP_FAIL;
+    bool calibrated = false;
+
+#if ADC_CALI_SCHEME_CURVE_FITTING_SUPPORTED
+    if (!calibrated) {
+        adc_cali_curve_fitting_config_t cali_config = {
+            .unit_id = unit,
+            .chan = channel,
+            .atten = atten,
+            .bitwidth = ADC_BITWIDTH_DEFAULT,
+        };
+        ret = adc_cali_create_scheme_curve_fitting(&cali_config, &handle);
+        if (ret == ESP_OK) calibrated = true;
+    }
+#endif
+
+#if ADC_CALI_SCHEME_LINE_FITTING_SUPPORTED
+    if (!calibrated) {
+        adc_cali_line_fitting_config_t cali_config = {
+            .unit_id = unit,
+            .atten = atten,
+            .bitwidth = ADC_BITWIDTH_DEFAULT,
+        };
+        ret = adc_cali_create_scheme_line_fitting(&cali_config, &handle);
+        if (ret == ESP_OK) calibrated = true;
+    }
+#endif
+
+    *out_handle = handle;
+    if (ret == ESP_OK) {
+        ESP_LOGI(TAG, "Calibración exitosa");
+    } else {
+        ESP_LOGW(TAG, "Calibración fallida o no soportada, usando datos crudos");
+    }
+    return calibrated;
 }
