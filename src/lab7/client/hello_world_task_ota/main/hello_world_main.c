@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
+
 #include <stdio.h>
 #include <inttypes.h>
 #include "sdkconfig.h"
@@ -12,6 +13,13 @@
 #include "esp_chip_info.h"
 #include "esp_flash.h"
 #include "esp_system.h"
+
+#include "esp_event.h"
+#include "esp_ota_ops.h"
+#include "esp_http_client.h"
+#include "esp_https_ota.h"
+#include "protocol_examples_common.h" // Usado para simplificar la conexión WiFi
+#include "nvs_flash.h"
 
 #include "esp_log.h"
 //#include "esp_pm.h"
@@ -25,6 +33,44 @@
 #define BUTTON_ACTIVE_LEVEL 0
 
 static const char *TAG = "OTA_TASK_APP";
+
+
+// Importar el certificado embebido desde CMakeLists.txt
+extern const uint8_t server_cert_pem_start[] asm("_binary_server_cert_pem_start");
+extern const uint8_t server_cert_pem_end[]   asm("_binary_server_cert_pem_end");
+
+// URL de tu servidor (CAMBIA ESTA IP POR LA DE TU PC)
+#define OTA_URL "https://192.168.1.50:8070/update.bin"
+
+esp_err_t run_ota_update(void)
+{
+    ESP_LOGI(TAG, "Iniciando OTA desde: %s", OTA_URL);
+
+    esp_http_client_config_t config = {
+        .url = OTA_URL,
+        .cert_pem = (char *)server_cert_pem_start, // Certificado para validar HTTPS
+        .skip_cert_common_name_check = true,       // Necesario si usas IP en vez de dominio
+        .keep_alive_enable = true,
+    };
+
+    esp_https_ota_config_t ota_config = {
+        .http_config = &config,
+    };
+
+    ESP_LOGI(TAG, "Descargando e instalando firmware...");
+    
+    // Función nativa simplificada de ESP-IDF
+    esp_err_t ret = esp_https_ota(&ota_config);
+
+    if (ret == ESP_OK) {
+        ESP_LOGI(TAG, "OTA Completada con éxito. Reiniciando...");
+        esp_restart();
+    } else {
+        ESP_LOGE(TAG, "Fallo en OTA: %s", esp_err_to_name(ret));
+        return ESP_FAIL;
+    }
+    return ESP_OK;
+}
 
 static void button_short_press_cb(void *arg, void *data) 
 {
