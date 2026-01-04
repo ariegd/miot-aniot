@@ -15,6 +15,6 @@ dependencies:
     version: 5.5.0
 direct_dependencies:
 - espressif/led_strip
-manifest_hash: f7f6445b581eaf119724bfa12b2f8b73b454b68d01c06056a13e2f00fad7dcd1
+manifest_hash: dff39da1d97c3920a33ba2ea1e36a9daab6ee7f5df4f8634075b8cf43add3248
 target: esp32c3
 version: 2.0.0

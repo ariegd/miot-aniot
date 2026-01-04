@@ -14,7 +14,7 @@
 #include "led_strip.h"
 #include "sdkconfig.h"
 
-static const char *TAG = "example";
+static const char *TAG = "blink_comp";
 
 /* Use project configuration menu (idf.py menuconfig) to choose the GPIO to blink,
    or you can edit the following line and set a number here.
@@ -93,8 +93,12 @@ void blink_init(void)
     /* Configure the peripheral according to the LED type */
     configure_led();
 }
-void blink_task(void)
+void blink_task(void *arg)
 {
+    //gpio_reset_pin(CONFIG_BLINK_GPIO);
+    //gpio_set_direction(CONFIG_BLINK_GPIO, GPIO_MODE_OUTPUT);
+     blink_init();
+
     while (1) {
         ESP_LOGI(TAG, "Turning the LED %s!", s_led_state == true ? "ON" : "OFF");
         blink_led();
@@ -103,10 +107,9 @@ void blink_task(void)
         vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
     }
 }
-/*
-void app_main(void)
+
+void blink_start(void)
 {
-  blink_init();
-  blink_task();
+    xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
+    ESP_LOGI(TAG, "blink started on GPIO %d", CONFIG_BLINK_GPIO);
 }
-*/

@@ -1,0 +1,6 @@
+dependencies:
+  espressif/led_strip: "^3.0.0"
+  # Driver recomendado para la familia SHT3x (compatible con SHT3C)
+  # esp-idf-lib/sht3x: "^1.0.8"
+  # Requisito común para componentes de esp-idf-lib
+  # esp-idf-lib/i2cdev: "^2.0.6"
