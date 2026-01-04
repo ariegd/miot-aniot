@@ -15,6 +15,7 @@
 #include "esp_log.h"
 #include "blink_comp.h"
 #include "sht3c_comp.h"
+#include "imu_comp.h"
 
 static const char *TAG = "hello_world";
 
@@ -23,6 +24,7 @@ void app_main(void)
     ESP_LOGI(TAG,  "Hello world!");
     blink_start();
     shtc3_start();
+    imu_start();
   
     /* Print chip information */
 /*    esp_chip_info_t chip_info;
