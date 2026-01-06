@@ -1,0 +1,6 @@
+dependencies:
+  esp-idf-lib/i2cdev:
+    version: '*'
+  espressif/led_strip: ^3.0.0
+description: default_espressif
+version: 1.0.0

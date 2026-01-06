@@ -3,4 +3,5 @@ idf_component_register(SRCS "hello_world_main.c"
                        INCLUDE_DIRS ""
                        REQUIRES blink_comp 
                                             sht3c_comp 
-                                            icm_comp)
+                                            icm_comp
+                                            i2c_comp)

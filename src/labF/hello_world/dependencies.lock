@@ -68,6 +68,6 @@ direct_dependencies:
 - esp-idf-lib/i2cdev
 - espressif/icm42670
 - espressif/led_strip
-manifest_hash: fd0fec1cc05e630e8092b6d76fb0fecbfff896ee328a1975dabe097f7151f839
+manifest_hash: 4a87b218ca3dd273780b06a70a54027d2be464cf3d9ed21fbce7153a1345bf49
 target: esp32c3
 version: 2.0.0
