@@ -110,6 +110,6 @@ void blink_task(void *arg)
 
 void blink_start(void)
 {
-    xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
+    xTaskCreate(&blink_task, "blink_task", 2048, NULL, 13, NULL);
     ESP_LOGI(TAG, "blink started on GPIO %d", CONFIG_BLINK_GPIO);
 }

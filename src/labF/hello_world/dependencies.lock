@@ -39,6 +39,30 @@ dependencies:
     - esp32s2
     - esp32s3
     version: 2.1.0
+  espressif/button:
+    component_hash: fccb18c37f1cfe0797b74a53a44d3f400f5fd01f4993b40052dfb7f401915089
+    dependencies:
+    - name: espressif/cmake_utilities
+      registry_url: https://components.espressif.com
+      require: private
+      version: '*'
+    - name: idf
+      require: private
+      version: '>=4.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 4.1.5
+  espressif/cmake_utilities:
+    component_hash: 05165f30922b422b4b90c08845e6d449329b97370fbd06309803d8cb539d79e3
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.1'
+    source:
+      registry_url: https://components.espressif.com
+      type: service
+    version: 1.1.1
   espressif/icm42670:
     component_hash: c20e85ac289af70d0810ad587ee313b5960d25513b4daa8eba019b2ad30beaf1
     dependencies:
@@ -66,8 +90,10 @@ dependencies:
 direct_dependencies:
 - esp-idf-lib/esp_idf_lib_helpers
 - esp-idf-lib/i2cdev
+- espressif/button
 - espressif/icm42670
 - espressif/led_strip
-manifest_hash: 4a87b218ca3dd273780b06a70a54027d2be464cf3d9ed21fbce7153a1345bf49
+- idf
+manifest_hash: b865aeafcae734e6064aa4991435fb7e38d9aac9c04377b88875881cb16d9d6b
 target: esp32c3
 version: 2.0.0

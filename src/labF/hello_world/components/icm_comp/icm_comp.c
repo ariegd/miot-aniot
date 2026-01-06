@@ -41,9 +41,25 @@ void icm42670_test(void *pvParameters)
 
     icm42670_handle_t icm_handle = NULL;
     
-    // Aquí usamos el bus compartido para crear el dispositivo
-    // Nota: El driver espressif/icm42670 usa internamente i2c_master_bus_add_device
+    // 1. Crear la instancia del dispositivo
     ESP_ERROR_CHECK(icm42670_create(bus_handle, ICM42670_I2C_ADDRESS, &icm_handle));
+    
+    // --- INICIO DE LA MODIFICACIÓN ---
+    // 2. CONFIGURACIÓN DE PARÁMETROS
+    icm42670_cfg_t sensor_cfg = {
+        .acce_fs = ACCE_FS_16G,    // No lleva el prefijo ICM42670_
+        .acce_odr = ACCE_ODR_100HZ, 
+        .gyro_fs = GYRO_FS_2000DPS, 
+        .gyro_odr = GYRO_ODR_100HZ,
+    };
+
+    ESP_ERROR_CHECK(icm42670_config(icm_handle, &sensor_cfg));
+
+    // 3. ENCENDIDO DEL SENSOR (Salir de modo Sleep)
+    ESP_ERROR_CHECK(icm42670_acce_set_pwr(icm_handle, ACCE_PWR_LOWNOISE));
+    
+    ESP_LOGI(TAG, "Sensor configurado y despertado con éxito");
+    // --- FIN DE LA MODIFICACIÓN ---
 
     icm42670_value_t acce_val;
     ESP_LOGI(TAG, "Sensor ICM42670 listo. Iniciando lecturas.");
@@ -77,5 +93,5 @@ void icm42670_test(void *pvParameters)
 void icm_start(i2c_master_bus_handle_t bus_handle)
 {
     // Pasamos el bus_handle como parámetro a la tarea
-    xTaskCreate(icm42670_test, "icm42670_test", 4096, (void *)bus_handle, 5, NULL);
+    xTaskCreate(icm42670_test, "icm42670_test", 4096, (void *)bus_handle, 1, NULL);
 }

@@ -45,7 +45,7 @@ void icm42670_test(void *pvParameters)
     // 1. Inicializar el Bus I2C
     i2c_master_bus_config_t i2c_mst_config = {
         .clk_source = I2C_CLK_SRC_DEFAULT,
-        .i2c_port = -1,
+        .i2c_port = I2C_NUM_0,
         .scl_io_num = I2C_SCL_IO,
         .sda_io_num = I2C_SDA_IO,
         .glitch_ignore_cnt = 7,
@@ -63,10 +63,24 @@ void icm42670_test(void *pvParameters)
     // El driver espera: bus, dirección I2C (0x68 por defecto), y puntero al handle
     ESP_ERROR_CHECK(icm42670_create(bus_handle, ICM42670_I2C_ADDRESS, &icm_handle));
     
-    /* Nota sobre icm42670_accel_en: 
-       Si el compilador sigue diciendo que no existe, es que tu driver 
-       activa el sensor por defecto en el 'create'. La quitamos para evitar el error.
-    */
+    // 3. CONFIGURACIÓN DE PARÁMETROS
+    //------------------- Se ha agregado, ya que en modo light sleep se desactiva ------------------------------
+    icm42670_cfg_t sensor_cfg = {
+        .acce_fs = ACCE_FS_16G,    // No lleva el prefijo ICM42670_
+        .acce_odr = ACCE_ODR_100HZ, 
+        .gyro_fs = GYRO_FS_2000DPS, 
+        .gyro_odr = GYRO_ODR_100HZ,
+    };
+
+    ESP_ERROR_CHECK(icm42670_config(icm_handle, &sensor_cfg));
+
+    // 4. ENCENDIDO DEL SENSOR (Solución al Modo Sleep)
+    // Usamos la función icm42670_acce_set_pwr definida en tu .h
+    // Pasamos el estado ACCE_PWR_LOWNOISE para máxima precisión
+    ESP_ERROR_CHECK(icm42670_acce_set_pwr(icm_handle, ACCE_PWR_LOWNOISE));
+    
+    ESP_LOGI(TAG, "Sensor configurado y despertado con éxito");
+    //------------------- FIN 3 ------------------------------
 
     icm42670_value_t acce_val;
 

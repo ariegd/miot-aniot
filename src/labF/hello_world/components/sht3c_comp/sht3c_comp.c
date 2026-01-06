@@ -42,5 +42,5 @@ void shtc3_start(i2c_master_bus_handle_t bus_handle)
     shtc3_init(&tempSensor, bus_handle, 0x70);
 
     // Creamos la tarea
-    xTaskCreate(&leer_temperatura, "leer_temperatura", 2048, NULL, 5, NULL);
+    xTaskCreate(&leer_temperatura, "leer_temperatura", 2048, NULL, 2, NULL);
 }

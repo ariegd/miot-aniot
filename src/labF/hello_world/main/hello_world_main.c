@@ -20,6 +20,7 @@
 //#include "imu_comp.h"
 #include "icm_comp.h"
 #include "i2c_comp.h"
+#include "sleep_comp.h"
 
 static const char *TAG = "hello_world";
 
@@ -35,6 +36,8 @@ void app_main(void)
 
     // 1. Iniciar Blink (Independiente)
     blink_start();
+    // 2. Iniciar Light Sleep (Independiente)
+    sleep_start();
 
     // 2. Inicializar el Bus I2C Compartido
     i2c_master_bus_handle_t i2c_bus_handle = NULL;
