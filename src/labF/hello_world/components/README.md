@@ -1,6 +1,11 @@
 #  Procedimiento de actualización
 * Para detener el bucle, debes asegurarte de que el binario que el ESP32 descarga e instala también tenga integrada la lógica del botón.
 
+* En el ecosistema de ESP-IDF, la arquitectura recomendada es mantener el proyecto OTA como el "Proyecto Padre" (Project) y añadir las funcionalidades adicionales como componentes.
+
+## ¿Por qué el proyecto OTA debe ser el Padre?
+ESP-IDF está diseñado para que el archivo CMakeLists.txt de la raíz gestione las particiones, el cargador de arranque (bootloader) y la configuración de actualización. Si intentas meter un proyecto entero de OTA dentro de otro como "componente", tendrás muchos problemas de dependencias con esp_https_ota.
+
 #  El chip sigue en modo Sleep.
 * Parece que estás enfrentando el problema común donde el sensor está conectado y el bus I2C responde, pero los datos no cambian (valores fijos o en cero) porque el chip sigue en modo Sleep.
 

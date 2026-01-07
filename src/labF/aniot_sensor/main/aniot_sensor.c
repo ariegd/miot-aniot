@@ -210,7 +210,7 @@ static void get_sha256_of_partitions(void)
     print_sha256(sha_256, "SHA-256 for current firmware: ");
 }
 
-void app_main(void)
+void ota_start(void)
 {
     ESP_LOGI(TAG, "OTA Example con Botón - Inicio");
     
@@ -243,4 +243,9 @@ void app_main(void)
 
     // Crear la tarea OTA (se quedará esperando al semáforo)
     xTaskCreate(&simple_ota_example_task, "ota_example_task", 8192, NULL, 5, NULL);
+}
+
+void app_main(void)
+{
+  ota_start();
 }
