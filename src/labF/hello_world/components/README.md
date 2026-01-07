@@ -1,3 +1,6 @@
+#  Procedimiento de actualización
+* Para detener el bucle, debes asegurarte de que el binario que el ESP32 descarga e instala también tenga integrada la lógica del botón.
+
 #  El chip sigue en modo Sleep.
 * Parece que estás enfrentando el problema común donde el sensor está conectado y el bus I2C responde, pero los datos no cambian (valores fijos o en cero) porque el chip sigue en modo Sleep.
 
