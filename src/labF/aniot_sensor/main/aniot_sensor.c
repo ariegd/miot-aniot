@@ -257,7 +257,7 @@ void app_main(void)
     ESP_LOGI(TAG, "Iniciando sistema...");
 
     // 1. Iniciar Blink (Independiente)
-    blink_start();
+    //blink_start();
     // 2. Iniciar Light Sleep (Independiente)
     sleep_start();
     // 3. Iniciar OTA (Independiente)

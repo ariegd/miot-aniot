@@ -1,3 +1,21 @@
+#  Stack Overflow	`sht3c_comp.c`
+* Solución: Aumenta el tamaño de la pila de la tarea en sht3c_comp.c. En tu archivo sht3c_comp.c, busca la función shtc3_start y cambia el valor de 2048 (o el que tengas) a 4096:
+```
+// Aumentamos a 4096 para dar espacio a los arrays de promedios y logs de float
+    xTaskCreate(&leer_temperatura, "leer_temperatura", 4096, NULL, 2, NULL);
+```
+
+# El mensaje waiting for download 
+1.  que ves ahora indica que el ESP32 ha entrado en modo de arranque (bootloader) en lugar de ejecutar tu código. Esto sucede porque el hardware ha detectado que el pin de configuración de arranque (GPIO9 en el ESP32-C3) estaba en nivel bajo durante el reinicio.
+
+2.  Aquí te explico por qué te está pasando ahora y cómo solucionarlo: ¿Por qué aparece ahora?
+Existen tres razones comunes basadas en los cambios que has realizado:
+* Conflicto de GPIO: En tu archivo main.c, el botón está configurado en el BOOT_BUTTON_NUM (GPIO9 para el C3). Si mantienes pulsado el botón físicamente mientras el chip se reinicia (o durante el proceso de Deep Sleep), el ESP32 entrará en modo descarga en lugar de arrancar normalmente.
+
+* Estado del pin tras Deep Sleep: Como has implementado ciclos de sueño en sleep_comp.c, el chip se reinicia constantemente. Si hay ruido eléctrico o el circuito del botón mantiene el GPIO9 bajo durante ese microsegundo de arranque, verás ese mensaje.
+
+* Configuración del monitor: El comando idf.py monitor a veces envía señales de reset a través del chip USB-UART que fuerzan este modo si la placa no tiene el circuito de auto-reset correctamente ajustado.
+
 #  Procedimiento de actualización
 * Para detener el bucle, debes asegurarte de que el binario que el ESP32 descarga e instala también tenga integrada la lógica del botón.
 
