@@ -1,4 +1,44 @@
 dependencies:
+  esp-idf-lib/esp_idf_lib_helpers:
+    component_hash: 689853bb8993434f9556af0f2816e808bf77b5d22100144b21f3519993daf237
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    targets:
+    - esp32
+    - esp32c2
+    - esp32c3
+    - esp32c5
+    - esp32c6
+    - esp32c61
+    - esp32h2
+    - esp32p4
+    - esp32s2
+    - esp32s3
+    version: 1.4.0
+  esp-idf-lib/i2cdev:
+    component_hash: 4f3838b2e68ab2b77fd43737139fa97dd0243b46af7b4a04588c67ff6b275ba1
+    dependencies:
+    - name: esp-idf-lib/esp_idf_lib_helpers
+      registry_url: https://components.espressif.com
+      require: private
+      version: '*'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    targets:
+    - esp32
+    - esp32c2
+    - esp32c3
+    - esp32c5
+    - esp32c6
+    - esp32c61
+    - esp32h2
+    - esp32p4
+    - esp32s2
+    - esp32s3
+    version: 2.1.0
   espressif/button:
     component_hash: fccb18c37f1cfe0797b74a53a44d3f400f5fd01f4993b40052dfb7f401915089
     dependencies:
@@ -23,6 +63,26 @@ dependencies:
       registry_url: https://components.espressif.com
       type: service
     version: 1.1.1
+  espressif/icm42670:
+    component_hash: 9c3cc57540f3fcb637fe66944fc0b0fa5c21d1df0be8a7ba3da1e7e2cdcea473
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.2'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 2.0.4
+  espressif/led_strip:
+    component_hash: f0d1b7f93eb3ee57bcfd220656176b0b5616e1947f89ed44364555cf910c4840
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 3.0.2
   idf:
     source:
       type: idf
@@ -34,9 +94,13 @@ dependencies:
       type: local
     version: '*'
 direct_dependencies:
+- esp-idf-lib/esp_idf_lib_helpers
+- esp-idf-lib/i2cdev
 - espressif/button
+- espressif/icm42670
+- espressif/led_strip
 - idf
 - protocol_examples_common
-manifest_hash: c41370980bccd1ec2582d37371340e5fb35bc287692bd79cbc73b256fcc8e70e
+manifest_hash: 5f1101d39e8042e3b6111abbf48af8027a295ef037920adb5a4689c3007d20fa
 target: esp32c3
 version: 2.0.0

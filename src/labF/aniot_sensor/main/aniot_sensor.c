@@ -21,6 +21,13 @@
 #include "iot_button.h"
 #include "button_gpio.h"
 
+// Incluye los componentes
+#include "blink_comp.h"
+#include "sht3c_comp.h"
+#include "icm_comp.h"
+#include "i2c_comp.h"
+#include "sleep_comp.h"
+
 #ifdef CONFIG_EXAMPLE_USE_CERT_BUNDLE
 #include "esp_crt_bundle.h"
 #endif
@@ -41,7 +48,7 @@
 #define HASH_LEN 32
 #define OTA_URL_SIZE 256
 
-static const char *TAG = "ota_button_example";
+static const char *TAG = "aniot_sensor";
 extern const uint8_t server_cert_pem_start[] asm("_binary_ca_cert_pem_start");
 extern const uint8_t server_cert_pem_end[] asm("_binary_ca_cert_pem_end");
 
@@ -247,5 +254,28 @@ void ota_start(void)
 
 void app_main(void)
 {
-  ota_start();
+    ESP_LOGI(TAG, "Iniciando sistema...");
+
+    // 1. Iniciar Blink (Independiente)
+    blink_start();
+    // 2. Iniciar Light Sleep (Independiente)
+    sleep_start();
+    // 3. Iniciar OTA (Independiente)
+    ota_start();
+
+    // 4. Inicializar el Bus I2C Compartido
+    i2c_master_bus_handle_t i2c_bus_handle = NULL;
+    ESP_ERROR_CHECK(i2c_bus_init(&i2c_bus_handle));
+
+    // 5. Iniciar sensores pasando el bus handle
+    // Nota: El orden no es crítico, pero el bus debe existir antes
+    if (i2c_bus_handle != NULL) {
+        ESP_LOGI(TAG, "Iniciando SHTC3...");
+        shtc3_start(i2c_bus_handle);
+
+        ESP_LOGI(TAG, "Iniciando ICM42670...");
+        icm_start(i2c_bus_handle);
+    } else {
+        ESP_LOGE(TAG, "No se pudo iniciar los sensores por fallo en I2C Bus");
+    }
 }

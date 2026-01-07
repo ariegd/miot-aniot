@@ -1,4 +1,4 @@
-menu "LIGHT SLEEP Configuration"
+menu "LIGHT-SLEEP Configuration"
 
     choice ENTER_LIGHT_SLEEP_MODE
         prompt "Enter light sleep mode"
