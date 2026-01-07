@@ -1,3 +1,12 @@
+# Corrige la indentación en Kconfig.projbuild
+* El lenguaje Kconfig es muy estricto con los espacios. El texto de ayuda (help) debe estar indentado (tener espacios a la izquierda) respecto a la palabra help.
+
+# Si el acelerómetro detecta una perturbación, se escribirá un mensaje en pantalla
+*   Para detectar una "perturbación" (un movimiento brusco o agitación), lo más efectivo es comparar las lecturas actuales con las lecturas anteriores. Si la diferencia (la variación) supera un cierto umbral, consideramos que ha ocurrido una perturbación.
+
+# Por qué falló el "float"
+* Aunque algunos sistemas de Kconfig extendidos permiten float, el núcleo que utiliza ESP-IDF es más restrictivo para asegurar la compatibilidad entre diferentes versiones de Python y herramientas de compilación. Usar un string y convertirlo en tiempo de ejecución es la práctica recomendada por Espressif para estos casos.
+
 #  Stack Overflow	`sht3c_comp.c`
 * Solución: Aumenta el tamaño de la pila de la tarea en sht3c_comp.c. En tu archivo sht3c_comp.c, busca la función shtc3_start y cambia el valor de 2048 (o el que tengas) a 4096:
 ```

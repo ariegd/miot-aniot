@@ -1,5 +1,13 @@
 menu "OTA Configuration"
 
+   config NODE_ID
+        int "Identificador único del Nodo (ID)"
+        range 1 255
+        default 1
+        help
+            Asigne un número entero único a este dispositivo (1-255). 
+            Este ID se usará para identificar el origen de los datos en la red.
+                    
     config EXAMPLE_FIRMWARE_UPGRADE_URL
         string "firmware upgrade url endpoint"
         default "https://192.168.0.3:8070/hello_world.bin"

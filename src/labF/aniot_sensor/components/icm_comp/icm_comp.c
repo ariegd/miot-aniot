@@ -7,6 +7,9 @@
 #include "icm42670.h"
 #include "icm_comp.h"
 
+#include <math.h>
+#include <stdlib.h> // Para atof()
+
 static const char *TAG = "icm_comp";
 
 #define LED_GPIO    2
@@ -63,6 +66,11 @@ void icm42670_test(void *pvParameters)
 
     icm42670_value_t acce_val;
     ESP_LOGI(TAG, "Sensor ICM42670 listo. Iniciando lecturas.");
+    
+    // VARIABLES PARA DETECCIÓN DE PERTURBACIÓN
+    float last_x = 0, last_y = 0, last_z = 0;
+    bool first_reading = true;
+    const float UMBRAL_PERTURBACION = atof(CONFIG_ICM_PERTURBATION_THRESHOLD); // Ajusta este valor según sensibilidad (0.3 a 0.8 es usual)
 
     while (1)
     {
@@ -73,7 +81,30 @@ void icm42670_test(void *pvParameters)
             float fay = acce_val.y;
             float faz = acce_val.z;
 
-            ESP_LOGI(TAG, "Accel: X=%.2f Y=%.2f Z=%.2f", fax, fay, faz);
+            // Lógica de detección de cambios bruscos
+            if (!first_reading) {
+                float diff_x = fabsf(fax - last_x);
+                float diff_y = fabsf(fay - last_y);
+                float diff_z = fabsf(faz - last_z);
+                
+                // Sumamos las diferencias de los 3 ejes
+                float total_diff = diff_x + diff_y + diff_z;
+
+                if (total_diff > UMBRAL_PERTURBACION) {
+                    ESP_LOGW(TAG, ">>> ¡PERTURBACIÓN DETECTADA! (Diff: %.2f) <<<", total_diff);
+                    // Opcional: Cambiar LED a un color de alerta momentáneo
+                    // led_set_color(255, 255, 0); // Amarillo
+                    ESP_LOGI(TAG, "Accel: X=%.2f Y=%.2f Z=%.2f", fax, fay, faz);
+                }
+            }
+            
+            // Actualizamos valores "anteriores" para la siguiente vuelta
+            last_x = fax;
+            last_y = fay;
+            last_z = faz;
+            first_reading = false;
+
+            //ESP_LOGI(TAG, "Accel: X=%.2f Y=%.2f Z=%.2f", fax, fay, faz);
 
             if (faz > 0.5) {
                 led_set_color(0, 255, 0);  // Verde

@@ -2,6 +2,7 @@
  * Ejemplo combinado: Simple OTA + IoT Button
  * Al pulsar el botón (BOOT), se descarga la actualización.
  */
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h" // Necesario para el semáforo
@@ -16,6 +17,7 @@
 #include "nvs.h"
 #include "nvs_flash.h"
 #include <sys/socket.h>
+#include "sdkconfig.h"  // <--- AÑADE ESTA LÍNEA
 
 // Headers del botón
 #include "iot_button.h"
@@ -217,10 +219,18 @@ static void get_sha256_of_partitions(void)
     print_sha256(sha_256, "SHA-256 for current firmware: ");
 }
 
+void imprimir_identidad_nodo(void) {
+    // Usamos CONFIG_NODE_ID directamente como un entero
+    ESP_LOGI(TAG, "SISTEMA ====================================");
+    ESP_LOGI(TAG, "SISTEMA INICIANDO NODO ID: %d", CONFIG_NODE_ID);
+    ESP_LOGI(TAG, "SISTEMA ====================================");
+}
+
 void ota_start(void)
 {
     ESP_LOGI(TAG, "OTA Example con Botón - Inicio");
-    
+    imprimir_identidad_nodo();
+
     // Crear semáforo binario
     ota_sem = xSemaphoreCreateBinary();
 
